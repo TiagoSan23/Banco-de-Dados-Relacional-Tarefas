@@ -1,0 +1,46 @@
+-- Criar banco de dados bd_sistema_bancario
+CREATE DATABASE bd_sistema_bancario
+
+-- Criar 5 tabelas quaiquer
+CREATE TABLE outros(nome varchar, idade integer);
+CREATE TABLE fornecedores(nome varchar, empresa varchar);
+CREATE TABLE festa(data date, nome varchar);
+CREATE TABLE fisica(cpf varchar, nome varchar);
+CREATE TABLE teste(cpf varchar, nome varchar);
+
+-- Criar tabelas conforme MER (Sistema Bancario):
+CREATE TABLE clientes(nome_cliente varchar, cidade_cliente varchar, endereco_cliente varchar);
+CREATE TABLE agencia(nome_agencia varchar, cidade_agencia varchar, depositos varchar);
+CREATE TABLE emprestimo(nome_agencia varchar, valor integer);
+CREATE TABLE Numero_Conta(nome_agencia varchar, agencia varchar);
+
+-- Deletar as 5 tabelas criadas aleatoriamente
+DROP TABLE outros;
+DROP TABLE fornecedores;
+DROP TABLE festa;
+DROP TABLE fisica;
+DROP TABLE teste;
+
+
+-- alterar as tabelas conforme o MER atualizado
+
+alterando nome:
+ALTER TABLE conta rename to tbl_conta;
+ALTER TABLE emprestimo rename to tbl_emprestimo;
+ALTER TABLE agencia rename to tbl_agencia;
+ALTER TABLE clientes rename to tbl_cliente;
+
+alterando colunas:
+ALTER TABLE tbl_cliente ADD COLUMN idade integer;
+ALTER TABLE tbl_cliente ADD COLUMN cpf varchar;
+ALTER TABLE tbl_agencia DROP COLUMN cidade_agencia;
+
+deletando colunas:
+ALTER TABLE tbl_agencia DROP COLUMN depositos;
+
+inserindo:
+ALTER TABLE tbl_agencia ADD COLUMN depositos varchar;
+ALTER TABLE tbl_agencia ADD COLUMN endereco_agencia varchar;
+
+-- Criar um esquema com o seu nome
+CREATE SCHEMA tiago;
