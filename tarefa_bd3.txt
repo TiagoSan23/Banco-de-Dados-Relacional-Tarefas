@@ -1,0 +1,1 @@
+ALTER TABLE tbl_titulo ADD CONSTRAINT categoria check(categoria in('drama','comedia'));
