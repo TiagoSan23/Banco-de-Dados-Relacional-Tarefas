@@ -1,0 +1,5 @@
+Aula 3
+CREATE TABLE tbl_cliente(codigo_cliente integer Primary key, nome varchar, cidade varchar, endereco varchar);
+CREATE TABLE tbl_titulo(codigo_titulo integer Primary key, titulo varchar NOT NULL, descricao varchar, categoria varchar);
+CREATE TABLE tbl_emprestimo(numero_emprestimo integer Primary Key, codigo_cliente integer, codigo_livro integer);
+CREATE TABLE tbl_livros(codigo_livro integer Primary Key, codigo_titulo integer, status varchar);
