@@ -1,5 +1,86 @@
-Aula 3
-CREATE TABLE tbl_cliente(codigo_cliente integer Primary key, nome varchar, cidade varchar, endereco varchar);
-CREATE TABLE tbl_titulo(codigo_titulo integer Primary key, titulo varchar NOT NULL, descricao varchar, categoria varchar);
-CREATE TABLE tbl_emprestimo(numero_emprestimo integer Primary Key, codigo_cliente integer, codigo_livro integer);
-CREATE TABLE tbl_livros(codigo_livro integer Primary Key, codigo_titulo integer, status varchar);
+-- Criar banco de dados bd_sistema_bancario
+
+CREATE DATABASE bd_sistema_bancario;
+-----------------------------------------------
+-- Criar 5 tabelas quaiquer
+
+CREATE TABLE clientes (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  telefone VARCHAR(15)
+);
+
+CREATE TABLE produtos (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  descricao TEXT,
+  preco DECIMAL(10,2) NOT NULL,
+  estoque INTEGER NOT NULL
+);
+
+CREATE TABLE pedidos (
+  id SERIAL PRIMARY KEY,
+  cliente_id INTEGER REFERENCES clientes(id),
+  data_pedido DATE NOT NULL,
+  valor_total DECIMAL(10,2) NOT NULL,
+  status VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE itens_pedido (
+  id SERIAL PRIMARY KEY,
+  pedido_id INTEGER REFERENCES pedidos(id),
+  produto_id INTEGER REFERENCES produtos(id),
+  quantidade INTEGER NOT NULL,
+  valor_unitario DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE enderecos (
+  id SERIAL PRIMARY KEY,
+  cliente_id INTEGER REFERENCES clientes(id),
+  logradouro VARCHAR(255) NOT NULL,
+  numero INTEGER,
+  complemento VARCHAR(255),
+  bairro VARCHAR(255) NOT NULL,
+  cidade VARCHAR(255) NOT NULL,
+  estado VARCHAR(2) NOT NULL,
+  cep VARCHAR(8) NOT NULL
+);
+
+-----------------------------------------------
+
+ Criar tabelas conforme MER (Sistema Bancario):
+
+CREATE TABLE cliente(NOME_CLIENTE VARCHAR, CIDADE_CLIENTE VARCHAR, ENDERECO_CLIENTE VARCHAR);
+
+CREATE TABLE CONTA(NUMERO_CONTA INTEGER, NOME_AGENCIA VARCHAR, SALDO INTEGER);
+
+CREATE TABLE emprestimo(NUMERO_EMPRESTIMO INTEGER, NOME_AGENCIA VARCHAR, VALOR INTEGER);
+
+CREATE TABLE AGENCIA(NOME_AGENCIA VARCHAR, CIDADE_AGENCIA VARCHAR, DEPOSITOS VARCHAR);
+---------------------------------------------------------------------------------------------
+
+-- Deletar as 5 tabelas criadas aleatoriamente
+
+DROP TABLE clientes, enderecos, itens_pedido, pedidos, produtos;
+----------------------------------------------------------------------
+
+-- alterar as tabelas conforme o MER atualizado
+
+ALTERANDO NOME:
+ALTER TABLE cliente RENAME TO tbl_cliente;
+ALTER TABLE conta RENAME TO tbl_conta;
+ALTER TABLE emprestimo RENAME TO tbl_emprestimo;
+ALTER TABLE agencia RENAME TO tbl_agencia;
+
+ALTERANDO COLUNAS:
+ALTER TABLE tbl_agencia RENAME COLUMN cidade_agencia TO endereco_agencia;
+
+ALTER TABLE tbl_cliente ADD COLUMN idade integer;
+
+ALTER TABLE tbl_cliente ADD COLUMN cpf varchar;
+
+------------------------------------------------------------------------------
+-- Criar um esquema com o seu nome
+CREATE SCHEMA tiago;
+
