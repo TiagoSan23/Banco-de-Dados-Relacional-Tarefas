@@ -1,0 +1,9 @@
+--select p.nome,sum(e.quantidade) as qtde from tbl_peca p join tbl_estoque e on p.cod_peca = e.cod_peca group by p.nome;
+
+--select p.nome,sum(e.quantidade) as qtde from tbl_peca p join tbl_estoque e on p.cod_peca = e.cod_peca group by e.quantidade, p.nome having e.quantidade > 20;
+
+--select f.cidade,count(f.cidade) from tbl_fornecedor f group by f.cidade;
+
+--select cor, count(nome) as qtde from tbl_peca group by cor;
+
+--select cor, count(nome) as qtde from tbl_peca group by cor having count(nome) >= 2;
